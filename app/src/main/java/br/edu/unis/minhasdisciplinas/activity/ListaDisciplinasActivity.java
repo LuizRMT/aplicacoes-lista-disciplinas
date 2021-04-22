@@ -6,10 +6,13 @@ import android.os.Bundle;
 import android.widget.ListView;
 
 import br.edu.unis.minhasdisciplinas.R;
+import br.edu.unis.minhasdisciplinas.adapter.ListaDisciplinasAdapter;
+import br.edu.unis.minhasdisciplinas.dao.DisciplinaDAO;
 
 public class ListaDisciplinasActivity extends AppCompatActivity {
 
     ListView listaDisciplinas;
+    DisciplinaDAO dao = new DisciplinaDAO();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +29,8 @@ public class ListaDisciplinasActivity extends AppCompatActivity {
 
     private void configurarListaDisciplinas() {
 
-        //implementar o adapter da lista de disciplinas
-        //listaDisciplinas.setAdapter();
+        ListaDisciplinasAdapter adapter = new ListaDisciplinasAdapter(this);
+        adapter.addAll(dao.buscartodos());
+        listaDisciplinas.setAdapter(adapter);
     }
 }
